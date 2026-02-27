@@ -23,7 +23,7 @@ class StudentForm(forms.ModelForm):
                     ('Cybersecurity', 'Cybersecurity'),
                     ('Data Science', 'Data Science'),
                     ('Artificial Intelligence', 'Artificial Intelligence'),
-                ],
-                attrs={'class': 'form-control'}
-            ),
+            ],
+                attrs={'class': 'form-control', 'placeholder':'Enter course'}),
+            'email': forms.EmailInput(attrs={'class':'form-control','placeholder': 'Enter email'})
         }
