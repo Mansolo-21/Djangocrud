@@ -1,11 +1,20 @@
 {% extends "base.html" %}
 {% block title %}Admin Dashboard{% endblock %}
-
 {% block content %}
-<div class="container mt-4">
+ <div class="container mt-4">
+    {%if messages %}
+        {%for message in messages%}
+            <div class="alert alert-{{message.tags}} alert-dismissible fade show mt-3 " role="alert">
+                {{message}}
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+            {% endfor %}
+        {% endif %}
+ 
+        
     <h1 class="text-secondary text-center">Admin Dashboard</h1>
-    <a href="{% url 'add'%}">ADD STUDENT</a>
     <p>Welcome to the Admin Dashboard.Here you can manage users, view reports and perform administrative tasks.</p>
+    <a href="{% url 'add'%}" class="btn btn-primary btn-sm">ADD STUDENT</a>
     <table class="table table-primary table-bordered mt-4 shadow-sm table-dark table-hover">
         <thead>
             <tr>

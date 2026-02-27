@@ -6,16 +6,23 @@
         <div class="col-md-6">
             <div class="card shadow-sm p-3 mb-5 bg-body rounded">
             <div class="card body">
-            <h2 class="text-danger text-center">Register student</h2>
+            <h2 class="text-danger text-center">
+                {% if form.instance.id%}
+                Update Registry
+                {%else%}
+                Register student
+            {% endif %}</h2>
+           
             <form method="POST">
             {% csrf_token %}    
             {{form.as_p}}
-            <button class="btn btn-primary w-100">Register</button>
+            <button class="btn btn-primary w-100">
+                {% if form.instance.id%}Update Registry {%else%} Register{% endif %}</button>
             </form>
+            
             </div>
             </div>
         </div>
     </div>
  </div>
-
 {% endblock %}
