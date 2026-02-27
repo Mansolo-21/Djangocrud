@@ -4,7 +4,7 @@ from .models import Student
 class StudentForm(forms.ModelForm):
     class Meta:
         model = Student 
-        fields = ['firstname', 'lastname', 'age', 'course']
+        fields = ['firstname', 'lastname', 'email','age', 'course']
         widgets = {
             'firstname': forms.TextInput(attrs={
                 'class': 'form-control',
@@ -15,7 +15,8 @@ class StudentForm(forms.ModelForm):
                 'placeholder': 'Enter Your Last Name'
             }),
             'age': forms.NumberInput(attrs={
-                'class': 'form-control'
+                'class': 'form-control',
+                'placeholder':'Enter age'
             }),
             'course': forms.Select(
                 choices=[

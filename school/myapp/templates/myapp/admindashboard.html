@@ -4,6 +4,7 @@
 {% block content %}
 <div class="container mt-4">
     <h1 class="text-secondary text-center">Admin Dashboard</h1>
+    <a href="{% url 'add'%}">ADD STUDENT</a>
     <p>Welcome to the Admin Dashboard.Here you can manage users, view reports and perform administrative tasks.</p>
     <table class="table table-primary table-bordered mt-4 shadow-sm table-dark table-hover">
         <thead>
@@ -29,7 +30,7 @@
                 <td>{{x.email }}</td>
                 <td>
                     <a href="{% url 'update' x.id %}" class="btn btn-warning btn-sm">UPDATE</a>
-                    <a href="{% url 'delete' x.id %}" class="btn btn-danger btn-sm">DELETE</a>
+                    <a href="{% url 'delete' x.id %}" class="btn btn-danger btn-sm " onclick='confirm("Are you sure you want to delete {{x.firstname}}?")'>DELETE</a>
                 </td>
             </tr>
             {% empty %}
