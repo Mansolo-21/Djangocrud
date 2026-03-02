@@ -4,7 +4,7 @@ from . forms import StudentForm
 from django.contrib import messages
 from django.contrib.auth.forms import UserCreationForm,AuthenticationForm
 from . forms import RegisterForm
-from django.contrib.auth import login
+from django.contrib.auth import login,logout
 # Create your views here.
 def index (request):
     return render(request,'User/index.html')
@@ -75,13 +75,21 @@ def login_user(request):
         if form.is_valid():
             user = form.get_user()
             login(request, user)
-            return redirect('students')
 
+            # redirect depending on user type
+            if user.is_staff:
+                return redirect('students')   # admin dashboard
+            else:
+                return redirect('user')       # user dashboard
     else:
         form = AuthenticationForm()
 
     return render(request, 'User/login.html', {'form': form})
             
+def user_dashboard(request):
+    return render(request, 'User/userdashboard.html')
 
-
+def logout_user(request):
+    logout(request)
+    return redirect('login')
 
