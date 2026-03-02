@@ -4,67 +4,85 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
     <title>{% block title %}Title{% endblock %}</title>
 </head>
+
 <body>
-    <nav class="navbar navbar-expand-lg bg-body-tertiary ">
-  <div class="container-fluid bg-primary fs-2 p-2 mx-6">
+
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid bg-primary fs-5 p-2">
+
     <a class="navbar-brand" href="#">
-      <img src="{% static 'img/logo.jpeg'%}" alt="Logo" width="70" height="60
-      " class="d-inline-block align-text-top rounded">
+      <img src="{% static 'img/logo.jpeg' %}" alt="Logo"
+           width="70" height="60"
+           class="d-inline-block align-text-top rounded">
     </a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent">
       <span class="navbar-toggler-icon"></span>
     </button>
+
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-6 mb-lg-0">
-        {%if user.is_authenticated %}
+      <ul class="navbar-nav me-auto">
+
+        {% if user.is_authenticated %}
+
         <li class="nav-item">
-          <span>Welcome {{user.username}}
+          <span class="nav-link text-white">
+            Welcome {{ user.username }}
+          </span>
         </li>
+
+       
+
+        {% if user.is_staff %}
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="{% url 'user'%}">Dashboard</a>
+          <a class="nav-link" href="{% url 'index' %}">Home</a>
         </li>
-        {%if user.is_staff%}
+
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="{% url 'index'%}">Home</a>
+          <a class="nav-link" href="{% url 'add' %}">Add Student</a>
         </li>
+
         <li class="nav-item">
-          <a class="nav-link" href="{%url 'add'%}">Add Student</a>
+          <a class="nav-link" href="{% url 'register' %}">Register User</a>
         </li>
+
         <li class="nav-item">
-          <a class="nav-link" href="{%url 'register'%}">Register User</a>
+          <a class="nav-link" href="{% url 'students' %}">Admin</a>
         </li>
+        {% endif %}
+
+        <!-- Logout -->
         <li class="nav-item">
-          <a class="nav-link" href="{%url 'students'%}">Admin</a>
-        </li> 
+          <a class="nav-link text-danger" href="{% url 'logout' %}">Logout</a>
+        </li>
+
+        {% else %}
+
+        <!-- Login shown only when logged out -->
         <li class="nav-item">
-          <a class="nav-link" href="{%url 'login'%}">Login</a>
-        </li> 
-        {%endif%}
-        {%endif%}
+          <a class="nav-link" href="{% url 'login' %}">Login</a>
+        </li>
+
+        {% endif %}
+
       </ul>
-    
     </div>
   </div>
 </nav>
-<main>
-    {%block content%}
 
+<main>
+    {% block content %}
     {% endblock %}
 </main>
 
+<footer class="text-center mt-4">
+    <p>&copy; 2026 All rights reserved</p>
+</footer>
 
-
-
-
-
-
-
-<footer>
-    <p class="text center">&copy; 2026 All rights reserved </p>
-  </footer>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

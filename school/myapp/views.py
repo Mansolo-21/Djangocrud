@@ -5,6 +5,7 @@ from django.contrib import messages
 from django.contrib.auth.forms import UserCreationForm,AuthenticationForm
 from . forms import RegisterForm
 from django.contrib.auth import login,logout
+
 # Create your views here.
 def index (request):
     return render(request,'User/index.html')
