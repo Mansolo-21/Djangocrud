@@ -1,12 +1,12 @@
 {% extends "base.html" %}
 {% block title %}Registration Form{% endblock %}
 {%block content%}
-<div class="container my-5"></div>
+<div class="container my-5 "></div>
     <div class="row justify-content-center">
         <div class="col-md-6">
             <div class="card shadow-sm p-3 mb-5 bg-body rounded">
-            <div class="card body">
-            <h2 class="text-danger text-center">
+            <div class="card body p-3">
+            <h2 class="text-tertiary text-center">
                 {% if form.instance.id%}
                 Update Registry
                 {%else%}
@@ -16,7 +16,7 @@
             <form method="POST">
             {% csrf_token %}    
             {{form.as_p}}
-            <button class="btn btn-primary w-100">
+            <button class="btn btn-success  w-100">
                 {% if form.instance.id%}Update Registry {%else%} Register{% endif %}</button>
             </form>
             
