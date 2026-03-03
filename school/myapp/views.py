@@ -5,12 +5,13 @@ from django.contrib import messages
 from django.contrib.auth.forms import UserCreationForm,AuthenticationForm
 from . forms import RegisterForm
 from django.contrib.auth import login,logout
-
+from django.contrib.auth.decorators import login_required
 # Create your views here.
 def index (request):
     return render(request,'User/index.html')
 
 #crud
+@login_required(login_url='login')
 def create_student(request):
     if request.method == "POST":
         form = StudentForm(request.POST)
@@ -22,21 +23,22 @@ def create_student(request):
         form = StudentForm()
 
     return render(request, 'Admin/studentform.html', {'form': form})
+
 #c-create-add a record into db
-
- 
-
+@login_required(login_url='login')
 def read_students(request):
     students=Student.objects.all()
     return render(request, 'Admin/admindashboard.html',{'students':students})
 
 #delete
+@login_required(login_url='login')
 def delete_student(request,id):
     student=get_object_or_404(Student,pk=id)
     student.delete()
     return redirect('students')
 
 #update
+@login_required(login_url='login')
 def update_student(request, id):
     student = get_object_or_404(Student, pk=id)
 
@@ -87,6 +89,7 @@ def login_user(request):
 
     return render(request, 'User/login.html', {'form': form})
             
+@login_required(login_url='login') 
 def user_dashboard(request):
     return render(request, 'User/userdashboard.html')
 
