@@ -9,6 +9,7 @@
             {% csrf_token %}
              {{form.as_p}}
               <button type="submit" class="btn btn-secondary">Login User</button>
+               <p class="text-center">Don't have an account?<a href="{%url 'register'%}">Register</a></p>
             </form>
         </div>
     </div>
